@@ -36,9 +36,14 @@
 	<div class="main" align="center">
 		<li>
 			<h2>This is a web based application for real state report</h2>
-			<p>This is a open source project built on springboot as a quick response for IT purpose. All informations are reserved/owned by Salesforce and Zillow.</p>
-			<p>This project is web based, supporting local running if input data file. By default, CSV file. Excel and XML will require further implementation. The project also support collecting data from online resource. Based on requirements, the current version only support local file and online image. All images copyright to Zillow, this program is a support program to remanage data. </p>
-			<p>This project is for demo/academic only. Not for any business purpose. This project is also free to access. If have any questions email to: lying0401@gmail.com</p>
+			<p>This is a open source project built on springboot as a quick response for IT purpose.
+			 All informations are reserved/owned by Salesforce and Zillow.</p>
+			<p>This project is web based, supporting local running if input data file. By default,
+			 CSV file. Excel and XML will require further implementation. The project also support
+			  collecting data from online resource. Based on requirements, the current version only
+			   support local file and online image. All images copyright to Zillow, this program is
+			    a support program to remanage data. Find source code at https://github.com/chrisyly/springbootApplication.git</p>
+			<p>This project is also free to access. If have any questions email to: lying0401@gmail.com</p>
 		</li>
 	</div>
 
