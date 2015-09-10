@@ -1,4 +1,4 @@
-This program "realstate.war" contains an example csv file from salesforce. In order to load the file, name it to "report.csv". (For further implementation, eg: loading file via website and loading from salesforce will be in next update)
+This program "realestate.war" contains an example csv file from salesforce. In order to load the file, name it to "report.csv". (For further implementation, eg: loading file via website and loading from salesforce will be in next update)
 
 The program does not contain the search and filter methods, they are finished coding, too lazy and limited time to implement.
 
@@ -8,10 +8,10 @@ are in future updates if needed.
 As said, this is a web based application
 
 How to run:
-1. make sure the "report.csv" is in the same directory as "realstate.war"
+1. make sure the "report.csv" is in the same directory as "realestate.war"
 2. make sure java is installed and updated
 3. for windows: run cmd, cd to program directory
-	type: java -jar realstate.war
+	type: java -jar realestate.war
    a terminal will run with information and logs, until see
    "load completed" and "ready to go" the initialization is done
 

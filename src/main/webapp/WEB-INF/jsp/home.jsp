@@ -22,7 +22,7 @@
 	<div id="header">
 		<div class="clearfix">
 			<div class="logo">
-				<h1>Real State Report</h1>
+				<h1>Real Estate Report</h1>
 			</div>
 			<ul class="navigation">
 				<li class="active"><a href="home">Home</a></li>
