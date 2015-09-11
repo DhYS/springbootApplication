@@ -60,17 +60,22 @@ public class HomeController {
 	public String nextPPTView(HttpServletRequest request, Model model) {
 		int temp = index;
 		String page = ""; 
-		if (request.getParameter("next") != null)
+		if (request.getParameter("next") != null) {
 			next();
-		else if (request.getParameter("previous") != null)
+		} else if (request.getParameter("previous") != null) {
 			previous();
-		else if (request.getParameter("page") != null)
+		} else if (request.getParameter("page") != null) {
 			page = request.getParameter("page number");
-			if(isNumeric(page)) {
-				index = setIndex(Integer.parseInt(page));
+			if (page == "") {
+				model.addAttribute("alertMessage", "alert('I need a page number!');");
 			} else {
-				model.addAttribute("alertMessage", "alert('Invalid page number!');");
+				if(isNumeric(page)) {
+					index = setIndex(Integer.parseInt(page));
+				} else {
+					model.addAttribute("alertMessage", "alert('Invalid page number!');");
+				}
 			}
+		}
 			
 		if (index == -1) {
 			model.addAttribute("alertMessage", "alert('Out of index!');");
@@ -154,16 +159,16 @@ public class HomeController {
 	}
 	
 	private static String getNumber() {
-		return Integer.toString(currentReport.size());
+		return Integer.toString(currentReport.size()-1);
 	}
 	
 	private static int setIndex(int i) {
-		if (1 < i && i < currentReport.size())
+		if (0 < i && i < currentReport.size())
 			return i;
 		return -1;
 	}
 	
-	private static String getIndex() {
+	 static String getIndex() {
 		return Integer.toString(index);
 	}
 	
