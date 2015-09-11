@@ -59,12 +59,19 @@ public class HomeController {
 	@RequestMapping(value="ppt-view", method=RequestMethod.POST)
 	public String nextPPTView(HttpServletRequest request, Model model) {
 		int temp = index;
+		String page = ""; 
 		if (request.getParameter("next") != null)
 			next();
 		else if (request.getParameter("previous") != null)
 			previous();
 		else if (request.getParameter("page") != null)
-			index = setIndex(Integer.parseInt(request.getParameter("page number")));
+			page = request.getParameter("page number");
+			if(isNumeric(page)) {
+				index = setIndex(Integer.parseInt(page));
+			} else {
+				model.addAttribute("alertMessage", "alert('Invalid page number!');");
+			}
+			
 		if (index == -1) {
 			model.addAttribute("alertMessage", "alert('Out of index!');");
 			index = temp;
@@ -115,48 +122,57 @@ public class HomeController {
 	}
 
 	// in case for future functionality 
-	private StateInfo searchByIndex(int i) {
+	private static StateInfo searchByIndex(int i) {
 		System.out.println(report.getByIndex(i).toString());
 		return report.getByIndex(i);
 	}
 
 	// multiple search filter
-	private List<StateInfo> searchByFilter(int property, String criteria, List<StateInfo> listIn) {
+	private static List<StateInfo> searchByFilter(int property, String criteria, List<StateInfo> listIn) {
 		currentReport = report.filter(property, criteria, listIn);
 		index = 1;
 		return currentReport;
 	}
 
-	private List<StateInfo> getAllList() {
+	private static List<StateInfo> getAllList() {
 		index = 1;
 		return report.getAllList();
 	}
 	
-	private void next() {
+	private static void next() {
 		if (index < currentReport.size())
 			index++;
 	}
 	
-	private void previous() {
+	private static void previous() {
 		if (index > 1)
 			index--;
 	}
 	
-	private StateInfo getCurrent() {
+	private static StateInfo getCurrent() {
 		return currentReport.get(index);
 	}
 	
-	public String getNumber() {
+	private static String getNumber() {
 		return Integer.toString(currentReport.size());
 	}
 	
-	private int setIndex(int i) {
+	private static int setIndex(int i) {
 		if (1 < i && i < currentReport.size())
 			return i;
 		return -1;
 	}
 	
-	public String getIndex() {
+	private static String getIndex() {
 		return Integer.toString(index);
+	}
+	
+	private static boolean isNumeric(String str)
+	{
+	    for (char c : str.toCharArray())
+	    {
+	        if (!Character.isDigit(c)) return false;
+	    }
+	    return true;
 	}
 }

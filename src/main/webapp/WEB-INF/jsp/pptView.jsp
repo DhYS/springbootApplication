@@ -223,6 +223,7 @@ CSS styles for standard search box with placeholder text-->#tfnewsearch
 			</table>
 		</div>
 		<p></p>
+		<div>
 		<form action="ppt-view" method=post>
 			<a><input type="submit" name="previous" value="Previous" id="submit" /></a>
 			<a>
@@ -232,6 +233,7 @@ CSS styles for standard search box with placeholder text-->#tfnewsearch
 			</a>
 			<a><input type="submit" name="next" value="Next" id="submit" /></a>
 		</form>
+		</div>
 	</div>
 
 	<div id="footer">
