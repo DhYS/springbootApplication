@@ -11,7 +11,7 @@ img {
 }
 /** box-shadow **/
 .box {
-	width: 550px;
+	width: 90%;
 	height: 350px;
 	background-color: #e7e7e7; /* Needed for IE */
 	display: inline-block;
@@ -63,9 +63,6 @@ img {
 	visibility: hidden;
 }
 /*------------ Sprites ------------*/
-.more, .subscribe, input[type='submit'] {
-	background: url('../images/interface.png') no-repeat;
-}
 
 .phone, .mail, .home, .fax, #footnote .connect a {
 	background: url('../images/icons.png') no-repeat;
@@ -75,33 +72,10 @@ img {
 	background: url('../images/frames.png') no-repeat;
 }
 
-.more, .subscribe, input[type='submit'] {
-	background-position: -107px 0;
-	color: #fff;
-	display: inline-block;
-	font: 12px/28px Arial, Helvetica, sans-serif;
-	height: 28px;
-	width: 97px;
-	text-align: center;
-	text-decoration: none;
-	text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
-	text-transform: uppercase;
-}
-
 .more:hover {
 	background-position: 0 0;
 }
 
-.subscribe, input[type='submit'] {
-	background-position: -222px -38px;
-	height: 38px;
-	line-height: 38px;
-	width: 212px;
-}
-
-.subscribe:hover, input[type='submit']:hover {
-	background-position: 0 -38px;
-}
 
 .home, .phone, .mail, .fax {
 	background-position: 0 1px;
@@ -246,7 +220,7 @@ h1 {
 
 h2 {
 	color: #626262;
-	font: 19px/24px "Times New Roman", Times, serif;
+	font: 22px/28px "Times New Roman", Times, serif;
 	letter-spacing: 2px;
 	margin: 0;
 	text-transform: uppercase;
@@ -398,7 +372,7 @@ p a:hover {
 	border-width: 0px 1px 1px 0px;
 	text-align: left;
 	padding: 7px;
-	font-size: 10px;
+	font-size: 16px;
 	font-family: Arial;
 	font-weight: normal;
 	color: #000000;
@@ -736,13 +710,6 @@ p a:hover {
 	font: 13px/24px Arial, Helvetica, sans-serif;
 }
 
-.message input[type='text'] {
-	height: 24px;
-	width: 590px;
-	margin: 0 0 18px;
-	padding: 0 4px;
-}
-
 .message textarea {
 	height: 110px;
 	width: 590px;
@@ -752,10 +719,7 @@ p a:hover {
 	resize: none;
 }
 
-.message input[type='submit'] {
-	cursor: pointer;
-	border: none;
-}
+
 /*------------ FOOTER ------------*/
 #footer {
 	background: #d9d9d9 url('../images/bg-footer.png') repeat-x left top;

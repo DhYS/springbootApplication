@@ -30,17 +30,48 @@ public class HomeController {
 	
 	@RequestMapping("ppt-view")
 	public String PPTView(Model model) {
-		model.addAttribute("report", report);
+		model.addAttribute("report", getCurrent());
+		model.addAttribute("reportNumber", getNumber());
+		model.addAttribute("reportIndex", getIndex());
+		return "pptView";
+	}
+	
+	@RequestMapping(value="ppt-view", method=RequestMethod.GET)
+	public String searchPPTView(HttpServletRequest request, Model model) {
+		if (request.getParameter("input") != null && !request.getParameter("input").equals("Address Search")) {
+			currentReport = searchByFilter(1, request.getParameter("input"), report.getAllList());
+			if (currentReport.size() > 0) {
+				model.addAttribute("report", getCurrent());
+			} else {
+				model.addAttribute("alertMessage", "alert('No result found!');");
+				currentReport = getAllList();
+				model.addAttribute("report", getCurrent());
+			}
+		} else if (request.getParameter("input") == null || request.getParameter("input").equals("Address Search")) {
+			currentReport = getAllList();
+			model.addAttribute("report", getCurrent());
+		}
+		model.addAttribute("reportNumber", getNumber());
+		model.addAttribute("reportIndex", getIndex());
 		return "pptView";
 	}
 	
 	@RequestMapping(value="ppt-view", method=RequestMethod.POST)
 	public String nextPPTView(HttpServletRequest request, Model model) {
+		int temp = index;
 		if (request.getParameter("next") != null)
-			report.next();
+			next();
 		else if (request.getParameter("previous") != null)
-			report.previous();
-		model.addAttribute("report", report);
+			previous();
+		else if (request.getParameter("page") != null)
+			index = setIndex(Integer.parseInt(request.getParameter("page number")));
+		if (index == -1) {
+			model.addAttribute("alertMessage", "alert('Out of index!');");
+			index = temp;
+		}
+		model.addAttribute("reportNumber", getNumber());
+		model.addAttribute("reportIndex", getIndex());
+		model.addAttribute("report", getCurrent());
 		return "pptView";
 	}
 
@@ -54,10 +85,11 @@ public class HomeController {
 		return "about";
 	}
 	
-	// below is added from application
-	
-	static CsvObject report = new CsvObject();
-	int index = 0;
+	// below is added from SpringbootApplication.java
+	// this is not required if having database support, it is for search/filter purpose
+	static List<StateInfo> currentReport;
+	static final CsvObject report = new CsvObject();
+	static int index;
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(HomeController.class, args);
@@ -72,6 +104,8 @@ public class HomeController {
 		
 		// Read input file from here
 		report.readCsv("report.csv", ",");
+		currentReport = report.getAllList();
+		index = 1;
 
 		System.out.println("Ready to go!");
 		// System.out.println(report.getByIndex(500));
@@ -80,25 +114,49 @@ public class HomeController {
 		// this is a test for filter
 	}
 
-	// in case for future functions
-	public StateInfo searchByIndex(int i) {
+	// in case for future functionality 
+	private StateInfo searchByIndex(int i) {
 		System.out.println(report.getByIndex(i).toString());
 		return report.getByIndex(i);
 	}
 
-	public List<StateInfo> SearchByFilter(int property, CharSequence criteria) {
-		return report.filter(property, criteria);
+	// multiple search filter
+	private List<StateInfo> searchByFilter(int property, CharSequence criteria, List<StateInfo> listIn) {
+		currentReport = report.filter(property, criteria, listIn);
+		index = 1;
+		return currentReport;
 	}
 
-	public List<StateInfo> getAllList() {
+	private List<StateInfo> getAllList() {
+		index = 1;
 		return report.getAllList();
 	}
 	
-	public void next() {
-		report.next();
+	private void next() {
+		if (index < currentReport.size())
+			index++;
 	}
 	
-	public void previous() {
-		report.previous();
+	private void previous() {
+		if (index > 1)
+			index--;
+	}
+	
+	private StateInfo getCurrent() {
+		return currentReport.get(index);
+	}
+	
+	public String getNumber() {
+		return Integer.toString(currentReport.size());
+	}
+	
+	private int setIndex(int i) {
+		if (1 < i && i < currentReport.size())
+			return i;
+		return -1;
+	}
+	
+	public String getIndex() {
+		return Integer.toString(index);
 	}
 }

@@ -11,11 +11,9 @@ import java.util.stream.Collectors;
 public class CsvObject {
 	private List<StateInfo> data;
 	private int length;
-	private int current;
 	public CsvObject() {
 		data = new ArrayList<StateInfo>();
 		length = -1;
-		current = 1;
 	}
 	
 	public void readCsv(String fileName, String splitBy) {
@@ -44,7 +42,7 @@ public class CsvObject {
 		length = data.size();
 	}
 	
-	public List<StateInfo> filter(int property, CharSequence criteria) {
+	public List<StateInfo> filter(int property, CharSequence criteria, List<StateInfo> data) {
 		List<StateInfo> output = null;
 		switch (property) {
 		case 0: case 1: case 2: case 3:
@@ -106,23 +104,4 @@ public class CsvObject {
 		}	
 		return data.get(i);
 	}
-	
-	public StateInfo getCurrent() {
-		return data.get(current);
-	}
-	
-	public void next() {
-		if (current < length - 5)
-			current++;
-	}
-	
-	public void previous() {
-		if (current > 1)
-			current--;
-	}
-	
-	public void setCurrent(int i) {
-		current = i;
-	}
-
 }

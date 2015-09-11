@@ -148,7 +148,7 @@ public final class StateInfo {
 		Document doc = Jsoup.connect(zillowAddress).get();
 		Elements images = doc.getElementsByClass("hip-photo");
 		if(images.size() > 0) {
-			return "src=" + images.first().attr("src");
+			return images.first().attr("src");
 		}
 		return "";
 	}
