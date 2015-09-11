@@ -121,7 +121,7 @@ public class HomeController {
 	}
 
 	// multiple search filter
-	private List<StateInfo> searchByFilter(int property, CharSequence criteria, List<StateInfo> listIn) {
+	private List<StateInfo> searchByFilter(int property, String criteria, List<StateInfo> listIn) {
 		currentReport = report.filter(property, criteria, listIn);
 		index = 1;
 		return currentReport;

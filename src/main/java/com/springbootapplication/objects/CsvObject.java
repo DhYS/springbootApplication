@@ -42,50 +42,50 @@ public class CsvObject {
 		length = data.size();
 	}
 	
-	public List<StateInfo> filter(int property, CharSequence criteria, List<StateInfo> data) {
+	public List<StateInfo> filter(int property, String criteria, List<StateInfo> data) {
 		List<StateInfo> output = null;
 		switch (property) {
 		case 0: case 1: case 2: case 3:
-			output = data.stream().filter(p -> p.getAddress().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getAddress().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 4:
-			output = data.stream().filter(p -> p.getBedCount().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getBedCount().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 5:
-			output = data.stream().filter(p -> p.getBathCount().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getBathCount().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 6:
-			output = data.stream().filter(p -> p.getSquareFootage().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getSquareFootage().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 7:
-			output = data.stream().filter(p -> p.getYearBuilt().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getYearBuilt().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 8:
-			output = data.stream().filter(p -> p.getNeighborhood().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getNeighborhood().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 9:
-			output = data.stream().filter(p -> p.getNeighborhoodRating().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getNeighborhoodRating().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 10:
-			output = data.stream().filter(p -> p.getStatus().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getStatus().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 11:
-			output = data.stream().filter(p -> p.getPurchasePrice().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getPurchasePrice().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 12:
-			output = data.stream().filter(p -> p.getProjectedCapEx().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getProjectedCapEx().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 13:
-			output = data.stream().filter(p -> p.getTotalCost().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getTotalCost().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 14:
-			output = data.stream().filter(p -> p.getPriceSF().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getPriceSF().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 15:
-			output = data.stream().filter(p -> p.getProjectedRent().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getProjectedRent().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		case 16:
-			output = data.stream().filter(p -> p.getProjectedGrossYield().contains(criteria)).collect(Collectors.toList());
+			output = data.stream().filter(p -> p.getProjectedGrossYield().toLowerCase().contains(criteria.toLowerCase())).collect(Collectors.toList());
 			return output;
 		default:
 			System.out.println("Invalide property");
